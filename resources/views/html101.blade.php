@@ -1,113 +1,147 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบฟอร์มใบสมัคร</title>
+    <title>แบบฟอร์มใบสมัคร (Modern)</title>
     <style>
         
+        
+        :root {
+            --primary-color: #00897b; 
+            --secondary-color: #4db6ac; 
+            --bg-color: #f5fafd; 
+            --text-color: #333;
+            --light-gray: #eceff1;
+            --border-radius: 12px;
+        }
+
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f0f8ff; 
+            background-color: var(--bg-color); 
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; 
             min-height: 100vh;
+            padding: 40px 20px;
             margin: 0;
         }
 
         /* คอนเทนเนอร์ฟอร์มหลัก */
         .form-container {
             width: 100%;
-            max-width: 680px;
+            max-width: 700px;
             background: #ffffff;
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0, 50, 100, 0.1); 
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 50, 100, 0.08); 
             border: 1px solid #e0e0e0;
         }
 
         /* หัวข้อ */
         h2 {
             text-align: center;
-            color: #1e88e5; 
-            margin-bottom: 30px;
+            color: var(--primary-color); 
+            margin-bottom: 35px;
             font-size: 2.5em;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Grid Layout */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px 30px; 
-            margin-bottom: 20px;
+            gap: 25px 35px; 
+            margin-bottom: 25px;
         }
         
         .full-width {
             grid-column: 1 / -1;
         }
 
+        /* Form Group */
+        .form-group {
+            position: relative;
+        }
+
         /* Label  */
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #4a4a4a;
-            font-size: 0.95em;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 1em;
+            transition: color 0.3s;
         }
 
+        /* Input Styles */php atisan surver
         input[type="text"], 
         input[type="date"], 
+        input[type="file"],
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
+            padding: 14px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
             box-sizing: border-box;
             transition: border-color 0.3s, box-shadow 0.3s;
             font-size: 1em;
-            background-color: #fcfcfc;
+            background-color: #ffffff;
         }
 
         input[type="text"]:focus, 
         input[type="date"]:focus, 
         textarea:focus {
-            border-color: #1e88e5; 
-            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+            border-color: var(--secondary-color); 
+            box-shadow: 0 0 0 3px rgba(77, 182, 172, 0.3);
             outline: none;
-            background-color: #ffffff;
         }
-
+        
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
         }
+
+        /* Input File */
+        input[type="file"] {
+            padding: 12px;
+            border: 1px dashed var(--secondary-color);
+            background-color: var(--bg-color);
+            cursor: pointer;
+        }
+
 
         /* กลุ่ม Radio (เพศ) */
-        .radio-group label {
-            display: inline-block;
-            margin-right: 20px;
-            font-weight: normal;
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding-top: 5px; /* จัดช่องว่างเพื่อให้สอดคล้องกับ input type text */
         }
-
-        /* Input File (รูปภาพ) */
-        input[type="file"] {
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #f7f7f7;
+        .radio-group input[type="radio"] + label {
+            margin-bottom: 0;
+            font-weight: normal;
+            display: inline-block;
         }
 
         /* Checkbox ยินยอม */
         .consent-group {
             margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            padding-top: 25px;
+            border-top: 1px solid var(--light-gray);
         }
         .consent-group label {
             font-weight: 400;
-            color: #333;
+            color: var(--text-color);
             display: inline-flex;
             align-items: center;
+        }
+        
+        /* Checkbox style */
+        input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            accent-color: var(--primary-color); /* เปลี่ยนสี checkbox */
         }
 
         /* กลุ่มปุ่ม */
@@ -127,29 +161,51 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
+            min-width: 120px;
         }
 
-        /* ปุ่มบันทึก */
+        /* ปุ่มบันทึก (Submit) */
         .button-group button[type="submit"] {
-            background: linear-gradient(45deg, #1e88e5, #4fc3f7); 
+            background: var(--primary-color);
             color: white;
-            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 137, 123, 0.4);
         }
         .button-group button[type="submit"]:hover {
-            background: linear-gradient(45deg, #4fc3f7, #1e88e5);
+            background: #00695c; 
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 136, 229, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 137, 123, 0.6);
         }
 
         /* ปุ่ม Reset */
         .button-group button[type="reset"] {
-            background-color: #f5f5f5; 
+            background-color: #f7f7f7; 
             color: #757575;
             border: 1px solid #ccc;
         }
         .button-group button[type="reset"]:hover {
             background-color: #e0e0e0;
         }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .form-container {
+                padding: 30px 20px;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .button-group {
+                text-align: center;
+            }
+            .button-group button {
+                margin: 10px 5px;
+            }
+        }
+
     </style>
 </head>
 <body>
