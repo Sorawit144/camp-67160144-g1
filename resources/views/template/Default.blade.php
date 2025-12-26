@@ -15,11 +15,12 @@
         </style>
         @stack('styles')
     </head>
-
     <body>
         <div class="container mt-4">
-            <h1>Workshop HTML 101 - Form</h1>
+            <!-- <h1>Workshop HTML 101 - Formss</h1> -->
+                @yield('header')
                 @yield('content')
+                
         </div>
         @stack('scripts')
     </body>
