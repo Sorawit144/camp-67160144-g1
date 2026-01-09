@@ -26,9 +26,12 @@
                 <td>{{ $item->hp }}</td>
                 <td>{{ $item->attack }}</td>
                 <td>{{ $item->defense }}</td>
-                <td>{{ $item->image_url }}</td>
+                <td><img src="{{ $item->image_url }}" alt="{{ $item->name }}"
+                            class="img-fluid rounded-3 shadow-sm border bg-white"
+                            style="width: 100px; height: 100px; object-fit: contain;"></td>
 
                 <td>
+                    
                     <a class="btn btn-warning" href="{{ url('/pokedexs/' . $item->id . '/edit') }}">
                         แก้ไข 
                     </a>
